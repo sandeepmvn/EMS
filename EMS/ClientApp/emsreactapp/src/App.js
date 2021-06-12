@@ -1,24 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 
+// import { PrivateRoute } from './helpers/PrivateRoute';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavbarComponent  from './components/Navbar/component';
+import LoginComponent  from './components/Login/component';
+import  { history}  from './_helpers/history';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <NavbarComponent />
+      <switch>
+         <Route path='/' exact component={LoginComponent} />
+         <Route path='/login' exact component={LoginComponent} />
+      </switch>
+    </Router>
   );
 }
 
