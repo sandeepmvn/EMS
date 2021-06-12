@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS", "EMS\EMS.csproj", "{229E1FAB-0E5F-4FF7-B40B-245DF1D93913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Model", "EMS.Model\EMS.Model.csproj", "{FD327389-98BC-4F8A-B761-010180380BFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229E1FAB-0E5F-4FF7-B40B-245DF1D93913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229E1FAB-0E5F-4FF7-B40B-245DF1D93913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229E1FAB-0E5F-4FF7-B40B-245DF1D93913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229E1FAB-0E5F-4FF7-B40B-245DF1D93913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD327389-98BC-4F8A-B761-010180380BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD327389-98BC-4F8A-B761-010180380BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD327389-98BC-4F8A-B761-010180380BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD327389-98BC-4F8A-B761-010180380BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB8B3A5E-BAD4-40AA-8664-A4E3FFB5C53A}
+	EndGlobalSection
+EndGlobal

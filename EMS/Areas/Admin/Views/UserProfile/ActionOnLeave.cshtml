@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EMS.Model.EmployeeLeave>
+@{
+    ViewBag.Title = "ActionOnLeave";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            EmployeeId
+        </th>
+        <th>
+            No Of Days
+        </th>
+        <th>
+            Reasons
+        </th>
+
+        <th>Status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FKEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DropDownListFor(modelItem => item.Status, new SelectList(ViewBag.status, "Text", "Value", item.Status), new { @class = "form-control statusDrp",@id=item.PKLeaveId})
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".statusDrp").change(function () {
+                debugger;
+                var val = $(this).val();
+                var LeaveId = $(this).attr("id");
+                $.ajax({
+                    type: "Post",
+                    url: "/Admin/UserProfile/StatusForLeave",
+                    data: { leaveId: LeaveId,status: val },
+                    success: function (data) {
+                        window.location.reload();
+                    }
+                });
+            });
+        })
+
+    </script>
+}
