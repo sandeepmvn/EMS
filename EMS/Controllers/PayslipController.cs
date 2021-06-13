@@ -1,4 +1,5 @@
-﻿using EMS.Model;
+﻿using EMS.CustomFilters;
+using EMS.Model;
 using EMS.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Http;
 
 namespace EMS.Controllers
 {
+    [JWTAuthorize]
     [RoutePrefix("api/Payslip")]
     public class PayslipController : ApiController
     {

@@ -14,10 +14,6 @@ namespace EMS.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserProfileController : Controller
     {
-        //UserProfileBO userProfileBO = new UserProfileBO();
-        //AttendenceBO attendenceBO = new AttendenceBO();
-        //LeaveBO leaveBO = new LeaveBO();
-
         private ILeaveRepository _leaveRepository;
         private IAttendenceRepository _attendenceRepository;
         private IUserProfileRepository _userProfileRepository;

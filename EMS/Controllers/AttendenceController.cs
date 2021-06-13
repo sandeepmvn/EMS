@@ -1,4 +1,5 @@
 ﻿using EMS.BO;
+using EMS.CustomFilters;
 using EMS.Model;
 using EMS.Model.ViewModels;
 using EMS.Repository;
@@ -11,6 +12,7 @@ using System.Web.Http;
 
 namespace EMS.Controllers
 {
+    [JWTAuthorize]
     [RoutePrefix("api/Attendence")]
     public class AttendenceController : ApiController
     {

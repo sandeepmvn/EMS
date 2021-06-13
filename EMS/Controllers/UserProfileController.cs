@@ -13,7 +13,7 @@ using System.Web.Http.Cors;
 
 namespace EMS.Controllers
 {
-    //[JWTAuthorize]
+    [JWTAuthorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/UserProfile")]
     public class UserProfileController : ApiController
