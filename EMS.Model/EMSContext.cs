@@ -17,5 +17,6 @@ namespace EMS.Model
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<EmployeeAttendence> EmployeeAttendence { get; set; }
         public DbSet<EmployeeLeave> EmployeeLeave { get; set; }
+        public DbSet<Payslip> Payslip { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using EMS.BO;
+using EMS.Model;
 using EMS.Model.PartialClass;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,15 @@ namespace EMS.Areas.Admin.Controllers
 {
     public class AuthenticateController : Controller
     {
-        UserProfileBO userProfileBO = new UserProfileBO();
+        //UserProfileBO userProfileBO = new UserProfileBO();
+
+        private IUserProfileRepository _userProfileRepository;
+
+        public AuthenticateController()
+        {
+            this._userProfileRepository = new UserProfileRepository(new EMSContext());
+        }
+        [HttpGet]
         // GET: Admin/Authenticate
         public ActionResult Login()
         {
@@ -23,13 +33,18 @@ namespace EMS.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                userDetail = userProfileBO.Authenticate(userDetail);
+                userDetail = this._userProfileRepository.Authenticate(userDetail);
                 if (userDetail.IsValid)
                 {
                     FormsAuthentication.SetAuthCookie(userDetail.EmailId, false);
                     return RedirectToAction("Index", "UserProfile");
                 }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "The emailId or password is incorrect");
+                }
             }
+            
             return View();
         }
 

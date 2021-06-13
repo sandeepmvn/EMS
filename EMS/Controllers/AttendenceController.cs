@@ -1,5 +1,6 @@
 ﻿using EMS.BO;
 using EMS.Model;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +13,34 @@ namespace EMS.Controllers
     [RoutePrefix("api/Attendence")]
     public class AttendenceController : ApiController
     {
-        AttendenceBO attendenceBO = new AttendenceBO();
+        //AttendenceBO attendenceBO = new AttendenceBO();
+
+        private IAttendenceRepository _attendenceRepository;
+        public AttendenceController()
+        {
+            this._attendenceRepository = new AttendenceRepository(new EMSContext());
+        }
 
         [HttpGet]
         [Route("GetEmployeerByEmpId/{empId}/{date}")]
         public IHttpActionResult GetEmployeeAttendence(int empId,DateTime date)
         {
-            return Ok(attendenceBO.GetEmployeeAttendence(empId,date));
+            return Ok(this._attendenceRepository.GetEmployeeAttendence(empId,date));
         }
 
         [HttpPost]
         [Route("AddEmployeeAttendence")]
-        public IHttpActionResult AddEmployeeAttendence(EmployeeAttendence attendence)
+        public IHttpActionResult AddEmployeeAttendence([FromBody] EmployeeAttendence attendence)
         {
-            attendenceBO.AddEmployeeAttendence(attendence);
+            this._attendenceRepository.Add(attendence);
             return Ok();
         }
 
         [HttpPut]
         [Route("UpdateEmployeeAttendence")]
-        public IHttpActionResult UpdateEmployeeAttendence(EmployeeAttendence attendence)
+        public IHttpActionResult UpdateEmployeeAttendence([FromBody] EmployeeAttendence attendence)
         {
-            attendenceBO.UpdateEmployeeAttendence(attendence);
+            this._attendenceRepository.Update(attendence);
             return Ok();
         }
 
@@ -41,7 +48,7 @@ namespace EMS.Controllers
         [Route("DeleteAttendence")]
         public IHttpActionResult DeleteAttendence(int attendenceId)
         {
-            attendenceBO.DeleteAttendence(attendenceId);
+            this._attendenceRepository.DeleteAttendence(attendenceId);
             return Ok();
         }
     }

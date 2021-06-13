@@ -1,5 +1,6 @@
 ﻿using EMS.BO;
 using EMS.Model;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,13 +14,24 @@ namespace EMS.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserProfileController : Controller
     {
-        UserProfileBO userProfileBO = new UserProfileBO();
-        AttendenceBO attendenceBO = new AttendenceBO();
-        LeaveBO leaveBO = new LeaveBO();
+        //UserProfileBO userProfileBO = new UserProfileBO();
+        //AttendenceBO attendenceBO = new AttendenceBO();
+        //LeaveBO leaveBO = new LeaveBO();
+
+        private ILeaveRepository _leaveRepository;
+        private IAttendenceRepository _attendenceRepository;
+        private IUserProfileRepository _userProfileRepository;
+
+        public UserProfileController()
+        {
+            this._userProfileRepository = new UserProfileRepository(new EMSContext());
+            this._attendenceRepository = new AttendenceRepository(new EMSContext());
+            this._leaveRepository = new LeaveRepository(new EMSContext());
+        }
         // GET: Admin/UserProfile
         public ActionResult Index()
         {
-            var obj = userProfileBO.GetAllEmployee();
+            var obj = this._userProfileRepository.GetAllEmployee();
             return View(obj);
         }
 
@@ -34,7 +46,7 @@ namespace EMS.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 userProfile.FKRoleId = 2;
-                userProfileBO.AddEmployee(userProfile);
+                this._userProfileRepository.Add(userProfile);
                 return RedirectToAction("Index");
             }
             return View(userProfile);
@@ -50,7 +62,7 @@ namespace EMS.Areas.Admin.Controllers
         public ActionResult Edit(int SearchString)
         {
 
-            UserProfile userProfile = userProfileBO.GetEmployeerByEmpId(SearchString);
+            UserProfile userProfile = this._userProfileRepository.GetEmployeerByEmpId(SearchString);
             if (userProfile == null)
             {
                 return HttpNotFound();
@@ -66,7 +78,7 @@ namespace EMS.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                userProfileBO.UpdateEmployee(userProfile);
+                this._userProfileRepository.Update(userProfile);
                 return RedirectToAction("Index");
             }
             return View(userProfile);
@@ -82,7 +94,7 @@ namespace EMS.Areas.Admin.Controllers
         public ActionResult GetAttendenceByEmpId(int EmpId, DateTime DateOfAttendence)
         {
             DateOfAttendence = Convert.ToDateTime(DateOfAttendence.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
-            var attendence = attendenceBO.GetEmployeeAttendence(EmpId, DateOfAttendence);
+            var attendence = this._attendenceRepository.GetEmployeeAttendence(EmpId, DateOfAttendence);
             ViewBag.Attendence = attendence;
             return View("GetAttendence", attendence);
         }
@@ -96,16 +108,16 @@ namespace EMS.Areas.Admin.Controllers
             new SelectListItem {Text="Rejected", Value="Rejected"},
         };
             ViewBag.status = obj;
-            var leaves = leaveBO.GetEmployeePendingLeaves();
+            var leaves = this._leaveRepository.GetEmployeePendingLeaves();
             return View(leaves);
         }
 
         [HttpPost]
         public ActionResult StatusForLeave(int leaveId, string status)
         {
-            EmployeeLeave leave=leaveBO.GetEmployeeLeaveByLeaveId(leaveId);
+            EmployeeLeave leave= this._leaveRepository.GetById(leaveId);
             leave.Status = status;
-            leaveBO.UpdateEmployeeLeave(leave);
+            this._leaveRepository.Update(leave);
             return Json("Success");
         }
     }

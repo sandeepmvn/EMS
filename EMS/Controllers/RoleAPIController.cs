@@ -1,4 +1,6 @@
 ﻿using EMS.BO;
+using EMS.Model;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +13,25 @@ namespace EMS.Controllers
     [RoutePrefix("api/RoleAPI")]
     public class RoleAPIController : ApiController
     {
-        RoleBO roleBO = new RoleBO();
+        //RoleBO roleBO = new RoleBO();
+        private IRoleRepository _roleRepository;
+        public RoleAPIController()
+        {
+            this._roleRepository = new RoleRepository(new EMSContext());
+        }
 
         [HttpGet]
         [Route("GetRoles")]
         public IHttpActionResult GetRoles()
         {
-            return Ok(roleBO.GetRoles());
+            return Ok(this._roleRepository.GetAll());
         }
 
         [HttpGet]
         [Route("GetRoleById/{roleId}")]
         public IHttpActionResult GetRoleById(int roleId)
         {
-            return Ok(roleBO.GetRoleById(roleId));
+            return Ok(this._roleRepository.GetById(roleId));
         }
     }
 }

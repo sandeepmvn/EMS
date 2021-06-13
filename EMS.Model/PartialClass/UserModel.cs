@@ -9,9 +9,9 @@ namespace EMS.Model.PartialClass
 {
     public class UserModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter emailId")]
         public string EmailId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter Password")]
         public string Password { get; set; }
         public bool IsValid { get; set; }
         public UserProfile UserProfile { get; set; }

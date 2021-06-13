@@ -9,8 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table table-bordered table-responsive table-condensed">
+    <tr style="background-color:blue;color:white;">
         <th>
             @Html.DisplayNameFor(model => model.EmployeeId)
         </th>
@@ -91,7 +91,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PKUserId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PKUserId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.PKUserId })
             </td>
         </tr>

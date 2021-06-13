@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS", "EMS\EMS.csproj", "{2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Model", "EMS.Model\EMS.Model.csproj", "{FD327389-98BC-4F8A-B761-010180380BFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Repository", "EMS.Repository\EMS.Repository.csproj", "{97F9C7D0-F4CF-4374-ABE0-9326A380C45A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FD327389-98BC-4F8A-B761-010180380BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD327389-98BC-4F8A-B761-010180380BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD327389-98BC-4F8A-B761-010180380BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F9C7D0-F4CF-4374-ABE0-9326A380C45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F9C7D0-F4CF-4374-ABE0-9326A380C45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F9C7D0-F4CF-4374-ABE0-9326A380C45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F9C7D0-F4CF-4374-ABE0-9326A380C45A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

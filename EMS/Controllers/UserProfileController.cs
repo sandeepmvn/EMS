@@ -1,5 +1,6 @@
 ﻿using EMS.BO;
 using EMS.Model;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,25 @@ namespace EMS.Controllers
     [RoutePrefix("api/UserProfile")]
     public class UserProfileController : ApiController
     {
-        UserProfileBO userProfileBO = new UserProfileBO();
+        //UserProfileBO userProfileBO = new UserProfileBO();
+        private IUserProfileRepository _userProfileRepository;
+        public UserProfileController()
+        {
+            this._userProfileRepository = new UserProfileRepository(new EMSContext());
+        }
 
         [HttpGet]
         [Route("GetAllEmployee")]
         public IHttpActionResult GetAllEmployee()
         {
-            return Ok(userProfileBO.GetAllEmployee());
+            return Ok(this._userProfileRepository.GetAllEmployee());
         }
 
         [HttpGet]
         [Route("GetEmployeerByEmpId/{empId}")]
         public IHttpActionResult GetEmployeerByEmpId(int empId)
         {
-            return Ok(userProfileBO.GetEmployeerByEmpId(empId));
+            return Ok(this._userProfileRepository.GetEmployeerByEmpId(empId));
         }
 
         [HttpPost]
@@ -33,7 +39,8 @@ namespace EMS.Controllers
         public IHttpActionResult AddEmployee(UserProfile userProfile)
         {
             userProfile.FKRoleId = 2;
-            userProfileBO.AddEmployee(userProfile);
+            this._userProfileRepository.Add(userProfile);
+            //userProfileBO.AddEmployee(userProfile);
             return Ok();
         }
 
@@ -41,7 +48,8 @@ namespace EMS.Controllers
         [Route("UpdateEmployee")]
         public IHttpActionResult UpdateEmployee(UserProfile userProfile)
         {
-            userProfileBO.UpdateEmployee(userProfile);
+            this._userProfileRepository.Update(userProfile);
+            //userProfileBO.UpdateEmployee(userProfile);
             return Ok();
         }
 
@@ -49,7 +57,7 @@ namespace EMS.Controllers
         [Route("DeleteEmployee")]
         public IHttpActionResult DeleteEmployee(int empId)
         {
-            userProfileBO.DeleteEmployee(empId);
+            this._userProfileRepository.DeleteEmployee(empId);
             return Ok();
         }
 

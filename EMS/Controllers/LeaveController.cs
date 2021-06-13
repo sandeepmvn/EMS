@@ -1,5 +1,6 @@
 ﻿using EMS.BO;
 using EMS.Model;
+using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +13,33 @@ namespace EMS.Controllers
     [RoutePrefix("api/Leave")]
     public class LeaveController : ApiController
     {
-        LeaveBO leaveBO = new LeaveBO();
+        //LeaveBO leaveBO = new LeaveBO();
+
+        private ILeaveRepository _leaveRepository;
+        public LeaveController()
+        {
+            this._leaveRepository = new LeaveRepository(new EMSContext());
+        }
 
         [HttpGet]
         [Route("GetEmployeePendingLeaves")]
         public IHttpActionResult GetEmployeePendingLeaves()
         {
-            return Ok(leaveBO.GetEmployeePendingLeaves());
+            return Ok(this._leaveRepository.GetEmployeePendingLeaves());
         }
 
         [HttpGet]
         [Route("GetEmployeeLeavesByEmpId/{empId}")]
         public IHttpActionResult GetEmployeeLeavesByEmpId(int empId)
         {
-            return Ok(leaveBO.GetEmployeeLeavesByEmpId(empId));
+            return Ok(this._leaveRepository.GetEmployeeLeavesByEmpId(empId));
         }
 
         [HttpPost]
         [Route("AddEmployeeLeave")]
         public IHttpActionResult AddEmployeeLeave(EmployeeLeave leave)
         {
-            leaveBO.AddEmployeeLeave(leave);
+            this._leaveRepository.Add(leave);
             return Ok();
         }
 
@@ -40,7 +47,7 @@ namespace EMS.Controllers
         [Route("UpdateEmployeeLeave")]
         public IHttpActionResult UpdateEmployeeLeave(EmployeeLeave leave)
         {
-            leaveBO.UpdateEmployeeLeave(leave);
+            this._leaveRepository.Update(leave);
             return Ok();
         }
 
@@ -48,7 +55,7 @@ namespace EMS.Controllers
         [Route("DeleteLeave")]
         public IHttpActionResult DeleteLeave(int leaveId)
         {
-            leaveBO.DeleteLeave(leaveId);
+            this._leaveRepository.Delete(leaveId);
             return Ok();
         }
     }

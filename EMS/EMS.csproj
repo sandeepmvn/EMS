@@ -151,8 +151,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthenticateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PayslipsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserProfileController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserProfilesController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveController.cs" />
+    <Compile Include="Controllers\PayslipController.cs" />
     <Compile Include="Controllers\RoleAPIController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -244,11 +245,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\UserProfiles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\UserProfiles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\UserProfiles\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\UserProfiles\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\UserProfiles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfile\Create.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfile\Edit.cshtml" />
@@ -261,6 +257,11 @@
     <Content Include="ClientApp\emsreactapp\package.json" />
     <Content Include="ClientApp\emsreactapp\public\manifest.json" />
     <Content Include="ClientApp\emsreactapp\README.md" />
+    <Content Include="Areas\Admin\Views\Payslips\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Payslips\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Payslips\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Payslips\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Payslips\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -323,6 +324,10 @@
     <ProjectReference Include="..\EMS.Model\EMS.Model.csproj">
       <Project>{fd327389-98bc-4f8a-b761-010180380bfc}</Project>
       <Name>EMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EMS.Repository\EMS.Repository.csproj">
+      <Project>{97f9c7d0-f4cf-4374-abe0-9326a380c45a}</Project>
+      <Name>EMS.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
