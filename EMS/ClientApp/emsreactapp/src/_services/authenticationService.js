@@ -1,11 +1,13 @@
 
 import {BehaviorSubject} from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 const isLoggedInSubject = new BehaviorSubject(localStorage.getItem('authCookie')?true:false);
 
 export const authenticationService = {
     login,
     logout,
+    getEmployeeId,
     isLogged: isLoggedInSubject.asObservable(),
     get isLoggedIn() { return isLoggedInSubject.value },
     token: localStorage.getItem('authCookie'),
@@ -20,6 +22,11 @@ export function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('authCookie');
     isLoggedInSubject.next(false);
+}
+
+export function getEmployeeId(token){
+    let decodedToken = jwt_decode(token);
+    return decodedToken['UId'];
 }
 
 

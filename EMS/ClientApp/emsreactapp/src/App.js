@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-// import { PrivateRoute } from './_helpers/PrivateRoute';
+import { PrivateRoute } from './_helpers/PrivateRoute';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavbarComponent  from './components/Navbar/component';
 import LoginComponent  from './components/Login/component';
@@ -17,10 +17,10 @@ function App() {
       <NavbarComponent />
       <Switch>
          {/* <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} /> */}
-         <Route path='/viewinfo' exact component={ViewInfoComponent} />
-         <Route path='/attendance' exact component={SubmitAttendanceComponent} />
-         <Route path='/leave' exact component={ApplyLeaveComponent} />
-         <Route path='/payslips' exact component={DownloadPaySlipsComponent} />
+         <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} />
+         <PrivateRoute exact path="/attendance" component={SubmitAttendanceComponent} />
+         <PrivateRoute exact path="/leave" component={ApplyLeaveComponent} />
+         <PrivateRoute exact path="/payslips" component={DownloadPaySlipsComponent} />
          <Route path='/login' exact component={LoginComponent} />
          <Route path='/' exact component={LoginComponent} />
       </Switch>

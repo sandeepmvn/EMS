@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import { authenticationService } from '../../_services/authenticationService';
 import { Navbar, Nav } from 'react-bootstrap';
+import axios from 'axios';
+import { config } from '../../_config/config';
+import {authHeader} from '../../_helpers/auth-header';
+import {handleResponse} from '../../_helpers/handle-response';
 
 export default class ViewInfoComponent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { employeeInfo: {} };
+        this.state = { employeeInfo: {},isloading:true };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleChangeEmp=this.handleChangeEmp.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
+      }
+
+      handleChangeEmp(prop,event){
+          var employeeInfo=this.state.employeeInfo;
+          employeeInfo[prop]=event.target.value;
+          this.setState({employeeInfo});
       }
     
       handleSubmit(event) {
@@ -21,7 +32,12 @@ export default class ViewInfoComponent extends Component {
       }
 
       componentDidMount(){
-//load the data
+         var d= authenticationService.getEmployeeId(authenticationService.token)
+        axios({url:config.apiURL+"/UserProfile/GetEmployeerByEmpId/"+d,method:'get',headers:authHeader()}).then(handleResponse)
+        .then(employeeInfo=>{
+            this.setState({employeeInfo});
+            this.setState({isloading:false});
+        });
       }
 
     render() {
@@ -34,16 +50,16 @@ export default class ViewInfoComponent extends Component {
                             <form autocomplete="off">
                                 <div className="form-group">
                                     <label for="EmpId">Employee Id:</label>
-                                    <input type="text" id="EmpId" name="EmpId" value="" className="form-control" readOnly disabled />
+                                    <input type="text" id="EmpId" name="EmpId" value={this.state.employeeInfo.EmployeeId} className="form-control" readOnly disabled />
                                 </div>
                                 <div className="form-group">
                                     <label for="fname">First Name</label>
-                                    <input required type="text" id="fname" name="fname" value="" className="form-control" maxLength="50" />
+                                    <input required type="text" id="fname" name="fname" value={this.state.employeeInfo.FirstName} className="form-control" maxLength="50" onChange={(e)=>this.handleChangeEmp('FirstName',e)}  />
                                 </div>
 
                                 <div className="form-group">
                                     <label for="lname">Last  Name</label>
-                                    <input  type="text" id="lname" name="lname" value="" className="form-control" maxLength="50" />
+                                    <input  type="text" id="lname" name="lname" value={this.state.employeeInfo.LastName} className="form-control" maxLength="50" onChange={(e)=>this.handleChangeEmp('LastName',e)} />
                                 </div>
 
                                 <fieldset className="form-group row">
@@ -65,26 +81,26 @@ export default class ViewInfoComponent extends Component {
 
                                 <div className="form-group">
                                     <label for="dob">DOB</label>
-                                    <input required type="date" id="dob" name="dob" value="" className="form-control" />
+                                    <input required type="date" id="dob" name="dob" value={this.state.employeeInfo.DateOfBirth} className="form-control" onChange={(e)=>this.handleChangeEmp('DateOfBirth',e)} />
                                 </div>
                                
                                 <div className="form-group">
                                     <label for="phoneNo">Phone No</label>
-                                    <input required type="tel" id="phoneNo" name="phoneNo" value="" className="form-control" maxLength="10" pattern="[6789][0-9]{9}" />
+                                    <input required type="tel" id="phoneNo" name="phoneNo" value={this.state.employeeInfo.PhoneNumber} className="form-control" maxLength="10" pattern="[6789][0-9]{9}" onChange={(e)=>this.handleChangeEmp('PhoneNumber',e)} />
                                 </div>
 
                                 <div className="form-group">
                                     <label for="Designation">Designation</label>
-                                    <input type="text" id="Designation" name="Designation" value="" className="form-control" maxLength="50" required />
+                                    <input type="text" id="Designation" name="Designation" value={this.state.employeeInfo.Designation} className="form-control" maxLength="50" required  onChange={(e)=>this.handleChangeEmp('Designation',e)}/>
                                 </div>
 
                                 <div className="form-group">
                                     <label for="Address">Address</label>
-                                    <input type="text" id="Address" name="Address" value="" className="form-control" maxLength="100" required/>
+                                    <input type="text" id="Address" name="Address" value={this.state.employeeInfo.Address} className="form-control" maxLength="100" required onChange={(e)=>this.handleChangeEmp('Address',e)}  />
                                 </div>
                                 <div className="form-group">
                                     <label for="workplace">Work Place</label>
-                                    <input type="text" id="workplace" name="workplace" value="" className="form-control" maxLength="50" required />
+                                    <input type="text" id="workplace" name="workplace" value={this.state.employeeInfo.Workplace} className="form-control" maxLength="50" required onChange={(e)=>this.handleChangeEmp('Workplace',e)} />
                                 </div>
                                 <button type="Save" class="btn btn-primary">Submit</button>
                             </form>

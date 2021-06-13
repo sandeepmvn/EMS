@@ -33,10 +33,6 @@ export default class NavbarComponent extends Component {
                             <Nav.Link href="/payslips">PaySlips</Nav.Link>
                         </Nav>}
                         {!this.state.isAuthenticated && <Nav className="mr-auto">
-                        <Nav.Link href="/viewinfo">View Info</Nav.Link>
-                            <Nav.Link href="/attendance">Submit Attendance</Nav.Link>
-                            <Nav.Link href="/leave">Apply For Leave</Nav.Link>
-                            <Nav.Link href="/payslips">PaySlips</Nav.Link>
                             </Nav>}
                         <Nav>
                             {!this.state.isAuthenticated && <Nav.Link href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</Nav.Link>}
