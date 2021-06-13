@@ -1,4 +1,5 @@
 ﻿using EMS.Model;
+using EMS.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,9 +16,15 @@ namespace EMS.Repository
 
         }
 
-        public Payslip GetPayslipByEmpAndMonth(int empId,DateTime month)
+        public PayslipVM GetPayslipByEmpAndMonth(int empId,DateTime month)
         {
-            return ds.Where(x => x.FKEmployeeId == empId && x.MonthDate == month).FirstOrDefault();
+            return ds.Select(x=>new PayslipVM()
+            {
+                EmployeeId=x.FKEmployeeId,
+                MonthDate=x.MonthDate,
+                CreditedOn=x.CreditedOn,
+                Amount=x.Amount
+            }).FirstOrDefault(x => x.EmployeeId == empId && x.MonthDate == month);
         }
     }
 }

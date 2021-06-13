@@ -5,18 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EMS.Model
+namespace EMS.Model.ViewModels
 {
-    public class EmployeeAttendence
+    public class AttendenceVM
     {
-        [Key]
-        public int PKAttendanceId { get; set; }
         [Required]
-        public int FKEmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
-        public DateTime AttendanceOn { get; set; }
+        public DateTime AttendenceOn { get; set; }
         [Required]
         public int WorkingHours { get; set; }
-
     }
 }

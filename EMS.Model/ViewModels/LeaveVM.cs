@@ -5,21 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EMS.Model
+namespace EMS.Model.ViewModels
 {
-    public class EmployeeLeave
+    public class LeaveVM
     {
-        [Key]
-        public int PKLeaveId { get; set; }
         [Required]
-        public int FKEmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
         public int NoOfDays { get; set; }
         [Required]
-        [StringLength(50)]
         public string Reason { get; set; }
         public string Status { get; set; }
-
-       
     }
 }

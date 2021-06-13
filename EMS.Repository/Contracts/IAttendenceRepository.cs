@@ -1,4 +1,5 @@
 ﻿using EMS.Model;
+using EMS.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace EMS.Repository
 {
     public interface IAttendenceRepository : IGenericRepository<EmployeeAttendence>
     {
-        EmployeeAttendence GetEmployeeAttendence(int empId, DateTime date);
+        AttendenceVM GetEmployeeAttendence(int empId, DateTime date);
+
+        void AddAttendence(AttendenceVM attendence);
         void DeleteAttendence(int attendenceId);
     }
 }

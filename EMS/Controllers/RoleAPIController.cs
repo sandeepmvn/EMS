@@ -13,25 +13,24 @@ namespace EMS.Controllers
     [RoutePrefix("api/RoleAPI")]
     public class RoleAPIController : ApiController
     {
-        //RoleBO roleBO = new RoleBO();
         private IRoleRepository _roleRepository;
         public RoleAPIController()
         {
             this._roleRepository = new RoleRepository(new EMSContext());
         }
 
-        [HttpGet]
-        [Route("GetRoles")]
-        public IHttpActionResult GetRoles()
-        {
-            return Ok(this._roleRepository.GetAll());
-        }
+        //[HttpGet]
+        //[Route("GetRoles")]
+        //public IHttpActionResult GetRoles()
+        //{
+        //    return Ok(this._roleRepository.GetAll());
+        //}
 
-        [HttpGet]
-        [Route("GetRoleById/{roleId}")]
-        public IHttpActionResult GetRoleById(int roleId)
-        {
-            return Ok(this._roleRepository.GetById(roleId));
-        }
+        //[HttpGet]
+        //[Route("GetRoleById/{roleId}")]
+        //public IHttpActionResult GetRoleById(int roleId)
+        //{
+        //    return Ok(this._roleRepository.GetById(roleId));
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EMS.Model;
+using EMS.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace EMS.Repository
 {
     public interface IPayslipRepository : IGenericRepository<Payslip>
     {
-        Payslip GetPayslipByEmpAndMonth(int empId, DateTime month);
+        PayslipVM GetPayslipByEmpAndMonth(int empId, DateTime month);
     }
 }

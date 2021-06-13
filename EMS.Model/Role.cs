@@ -11,6 +11,8 @@ namespace EMS.Model
     {
         [Key]
         public int PKRoleId { get; set; }
+        [Required]
+        [StringLength(50)]
         public string RoleName { get; set; }
 
     }
