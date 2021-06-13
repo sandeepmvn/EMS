@@ -78,6 +78,7 @@
       <DependentUpon>202106130422556_added_payslip_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PartialClass\AttendenceViewModel.cs" />
     <Compile Include="PartialClass\UserModel.cs" />
     <Compile Include="Payslip.cs" />
     <Compile Include="Role.cs" />
