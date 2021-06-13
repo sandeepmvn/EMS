@@ -108,7 +108,7 @@ namespace EMS.Areas.Admin.Controllers
             new SelectListItem {Text="Rejected", Value="Rejected"},
         };
             ViewBag.status = obj;
-            var leaves = this._leaveRepository.GetEmployeePendingLeaves();
+            var leaves = this._leaveRepository.GetAll();
             return View(leaves);
         }
 

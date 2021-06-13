@@ -15,7 +15,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+        <div class="form-horizontal" style="margin-top:5rem;">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.PKUserId)
@@ -56,7 +56,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @readonly = "readonly", @type = "date", @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -87,8 +87,16 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                @*<div class="col-md-10">
                     @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>*@
+                <div class="col-md-10">
+                    Male
+                    @Html.RadioButtonFor(model => model.Gender, "Male")
+                    Female
+                    @Html.RadioButtonFor(model => model.Gender, "Female")
+
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -155,27 +163,15 @@ else
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-
-            
-        })
-        $("#btnsrchterm").keyup(function () {
-            debugger;
-            if ($(this).val().length == 0) {
-                $("#quizDescription").addClass("red").text("Please enter employee Id.");
-                $("#quizDescription").show();
-            } else {
-                $("#quizDescription").text("");
-                $("#quizDescription").hide();
-            }
-        }).keyup();
+       
         function validate() {
             debugger;
-            var searchString = $("#btnsrchterm").val();
-            if (searchString == "" || searchString == null) {
+            var searchString = $("#SearchString").val();
+            if (searchString.length == 0) {
+                $("#quizDescription").addClass("red").text("Please enter employee Id.");
                 return false;
-            }
-            else {
+            } else {
+                $("#quizDescription").text("");
                 return true;
             }
         }
