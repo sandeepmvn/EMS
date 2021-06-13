@@ -15,7 +15,7 @@ function App() {
   return (
     <Router history={history}>
       <NavbarComponent />
-      <switch>
+      <Switch>
          {/* <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} /> */}
          <Route path='/viewinfo' exact component={ViewInfoComponent} />
          <Route path='/attendance' exact component={SubmitAttendanceComponent} />
@@ -23,7 +23,7 @@ function App() {
          <Route path='/payslips' exact component={DownloadPaySlipsComponent} />
          <Route path='/login' exact component={LoginComponent} />
          <Route path='/' exact component={LoginComponent} />
-      </switch>
+      </Switch>
     </Router>
   );
 }

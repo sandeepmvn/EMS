@@ -11,10 +11,12 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Security;
 
 namespace EMS.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Authentication")]
     public class AuthenticationController : ApiController
     {
