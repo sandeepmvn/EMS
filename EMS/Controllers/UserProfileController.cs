@@ -1,5 +1,7 @@
 ﻿using EMS.BO;
+using EMS.CustomFilters;
 using EMS.Model;
+using EMS.Model.ViewModels;
 using EMS.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Web.Http.Cors;
 
 namespace EMS.Controllers
 {
+    [JWTAuthorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/UserProfile")]
     public class UserProfileController : ApiController
@@ -22,37 +25,22 @@ namespace EMS.Controllers
             this._userProfileRepository = new UserProfileRepository(new EMSContext());
         }
 
-        [HttpGet]
-        [Route("GetAllEmployee")]
-        public IHttpActionResult GetAllEmployee()
-        {
-            return Ok(this._userProfileRepository.GetAllEmployee());
-        }
-
+        
         [HttpGet]
         [Route("GetEmployeerByEmpId/{empId}")]
         public IHttpActionResult GetEmployeerByEmpId(int empId)
         {
-            return Ok(this._userProfileRepository.GetEmployeerByEmpId(empId));
+            return Ok(this._userProfileRepository.GetEmployeeForAPI(empId));
         }
 
-        [HttpPost]
-        [Route("AddEmployee")]
-        public IHttpActionResult AddEmployee(UserProfile userProfile)
-        {
-            userProfile.FKRoleId = 2;
-            this._userProfileRepository.Add(userProfile);
-            //userProfileBO.AddEmployee(userProfile);
-            return Ok();
-        }
 
         [HttpPut]
         [Route("UpdateEmployee")]
-        public IHttpActionResult UpdateEmployee(UserProfile userProfile)
+        public IHttpActionResult UpdateEmployee(EmployeeRequestVM employeeRequestVM)
         {
-            this._userProfileRepository.Update(userProfile);
+            this._userProfileRepository.UpdateEmployee(employeeRequestVM);
             //userProfileBO.UpdateEmployee(userProfile);
-            return Ok();
+            return Ok(employeeRequestVM.EmployeeId);
         }
 
         [HttpDelete]
