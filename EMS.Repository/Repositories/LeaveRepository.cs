@@ -25,6 +25,7 @@ namespace EMS.Repository
         {
             return ds.Select(x => new LeaveVM()
             {
+                PKLeaveId=x.PKLeaveId,
                 EmployeeId = x.FKEmployeeId,
                 NoOfDays = x.NoOfDays,
                 Reason = x.Reason,
@@ -35,6 +36,7 @@ namespace EMS.Repository
         public List<LeaveVM> GetEmployeeLeavesByEmpId(int empId)
         {
             return ds.Select(x=>new LeaveVM() { 
+                PKLeaveId=x.PKLeaveId,
                 EmployeeId=x.FKEmployeeId,
                 NoOfDays=x.NoOfDays,
                 Reason=x.Reason,

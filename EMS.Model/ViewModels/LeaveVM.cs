@@ -9,6 +9,7 @@ namespace EMS.Model.ViewModels
 {
     public class LeaveVM
     {
+        public int PKLeaveId { get; set; }
         [Required]
         public int EmployeeId { get; set; }
         [Required]

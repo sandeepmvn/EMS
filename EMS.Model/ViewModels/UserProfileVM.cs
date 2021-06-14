@@ -12,7 +12,8 @@ namespace EMS.Model.ViewModels
     {
         public int RoleId { get; set; }
 
-        [Required(ErrorMessage = "Please enter employeeId.")]
+        [Required(ErrorMessage = "Please enter employee Id.")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid employee Id")]
         [DisplayName("Employee Id")]
         public int EmployeeId { get; set; }
 
@@ -35,6 +36,8 @@ namespace EMS.Model.ViewModels
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         [DisplayName("Phone number")]
         public string PhoneNumber { get; set; }
 
