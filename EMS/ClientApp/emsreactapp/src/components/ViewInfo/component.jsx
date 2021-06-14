@@ -116,7 +116,9 @@ export default class ViewInfoComponent extends Component {
                                     <label htmlFor="workplace">Work Place</label>
                                     <input type="text" id="workplace" name="workplace" value={this.state.employeeInfo.Workplace} className="form-control" maxLength="50" required onChange={(e)=>this.handleChangeEmp('Workplace',e)} />
                                 </div>
-                                <button type="submit" className="btn btn-primary" disabled={this.state.isloading}>Submit</button>
+                                <div className="pull-right">
+                                <button type="submit" className="btn btn-primary" disabled={this.state.isloading}>Save</button>
+                                </div>
                             </form>
                         </div>
                     </div>

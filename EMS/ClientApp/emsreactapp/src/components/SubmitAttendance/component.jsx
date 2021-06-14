@@ -82,8 +82,9 @@ export default class SubmitAttendanceComponent extends Component {
                                     <label htmlFor="workhours">Work Hours</label>
                                     <input required type="number" id="workhours" name="workhours" placeholder="00" value={this.state.attendenceVM.WorkingHours} className="form-control" min="0" max="12" onChange={(e)=>this.handleChangeEmp('WorkingHours',e)} />
                                 </div>
-
+                                <div className="pull-right">
                                 <button type="submit" className="btn btn-primary">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>

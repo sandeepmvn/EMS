@@ -72,8 +72,9 @@ export default class ApplyLeaveComponent extends Component {
                                     <label htmlFor="Reason">Reason</label>
                                     <textarea required className="form-control" name="Reason" id="Reason" rows="3" maxLength="400" value={this.state.leaveVM.Reason}  onChange={(e)=>this.handleChangeEmp('Reason',e)} ></textarea>
                                 </div>
-                             
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <div className="pull-right">
+                                <button type="submit" className="btn btn-primary">Apply</button>
+                                </div>
                             </form>
                         </div>
                     </div>
