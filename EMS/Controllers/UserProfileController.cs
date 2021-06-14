@@ -18,13 +18,11 @@ namespace EMS.Controllers
     [RoutePrefix("api/UserProfile")]
     public class UserProfileController : ApiController
     {
-        //UserProfileBO userProfileBO = new UserProfileBO();
         private IUserProfileRepository _userProfileRepository;
         public UserProfileController()
         {
             this._userProfileRepository = new UserProfileRepository(new EMSContext());
         }
-
         
         [HttpGet]
         [Route("GetEmployeerByEmpId/{empId}")]
@@ -42,13 +40,13 @@ namespace EMS.Controllers
             return Ok(employeeRequestVM.EmployeeId);
         }
 
-        [HttpDelete]
-        [Route("DeleteEmployee")]
-        public IHttpActionResult DeleteEmployee(int empId)
-        {
-            this._userProfileRepository.DeleteEmployee(empId);
-            return Ok();
-        }
+        //[HttpDelete]
+        //[Route("DeleteEmployee")]
+        //public IHttpActionResult DeleteEmployee(int empId)
+        //{
+        //    this._userProfileRepository.DeleteEmployee(empId);
+        //    return Ok();
+        //}
 
     }
 }

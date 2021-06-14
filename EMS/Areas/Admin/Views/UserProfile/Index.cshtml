@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EMS.Model.UserProfile>
+﻿@model IEnumerable<EMS.Model.ViewModels.UserProfileVM>
 
 @{
     ViewBag.Title = "Index";
@@ -90,8 +90,8 @@
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PKUserId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PKUserId })
+                @Html.ActionLink("Edit", "Edit", new { SearchString = item.EmployeeId }) |
+                @Html.ActionLink("Delete", "DeleteEmployee", new { empId = item.EmployeeId })
             </td>
         </tr>
     }

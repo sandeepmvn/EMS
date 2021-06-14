@@ -1,6 +1,8 @@
 ﻿using EMS.BO;
+using EMS.Model;
 using EMS.Model.PartialClass;
 using EMS.Model.Utility;
+using EMS.Repository;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,11 @@ namespace EMS.Controllers
     [RoutePrefix("api/Authentication")]
     public class AuthenticationController : ApiController
     {
-        UserProfileBO userProfileBO = new UserProfileBO();
+        private IUserProfileRepository _userProfileRepository;
+        public AuthenticationController()
+        {
+            this._userProfileRepository = new UserProfileRepository(new EMSContext());
+        }
 
         [HttpPost]
         [Route("Login")]
@@ -28,7 +34,7 @@ namespace EMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                userDetail = userProfileBO.Authenticate(userDetail);
+                userDetail = this._userProfileRepository.Authenticate(userDetail);
                 if (userDetail.IsValid)
                 {
                     SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Helper.SymmetricSecurityKey));
@@ -55,14 +61,6 @@ namespace EMS.Controllers
                 else
                     return BadRequest();
             }
-            return Ok();
-        }
-
-        [HttpPost]
-        [Route("Logout")]
-        public IHttpActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
             return Ok();
         }
     }

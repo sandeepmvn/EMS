@@ -1,4 +1,5 @@
 ﻿using EMS.Model;
+using EMS.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,15 +16,47 @@ namespace EMS.Repository
 
         }
 
-        public List<EmployeeLeave> GetEmployeePendingLeaves()
+        //public List<EmployeeLeave> GetEmployeePendingLeaves()
+        //{
+        //    return ds.Where(x => x.Status == "Pending").ToList();
+        //}
+
+        public List<LeaveVM> GetEmployeeLeaves()
         {
-            return ds.Where(x => x.Status == "Pending").ToList();
+            return ds.Select(x => new LeaveVM()
+            {
+                EmployeeId = x.FKEmployeeId,
+                NoOfDays = x.NoOfDays,
+                Reason = x.Reason,
+                Status = x.Status
+            }).ToList();
         }
 
-        public List<EmployeeLeave> GetEmployeeLeavesByEmpId(int empId)
+        public List<LeaveVM> GetEmployeeLeavesByEmpId(int empId)
         {
-            return ds.Where(x => x.FKEmployeeId == empId).ToList();
+            return ds.Select(x=>new LeaveVM() { 
+                EmployeeId=x.FKEmployeeId,
+                NoOfDays=x.NoOfDays,
+                Reason=x.Reason,
+                Status=x.Status
+            }).Where(x => x.EmployeeId == empId).ToList();
         }
 
+        public void AddEmployeeLeave(LeaveVM leaveVM)
+        {
+            var leave = new EmployeeLeave();
+            leave.FKEmployeeId = leaveVM.EmployeeId;
+            leave.NoOfDays = leaveVM.NoOfDays;
+            leave.Reason = leaveVM.Reason;
+            leave.Status = "Pending";
+            Add(leave);
+        }
+
+        public void UpdateEmployeeLeaveStatus(int leaveId, string status)
+        {
+            var leave = ds.Find(leaveId);
+            leave.Status = status;
+            Update(leave);
+        }
     }
 }
