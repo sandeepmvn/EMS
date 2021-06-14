@@ -44,7 +44,6 @@
     <script>
         $(document).ready(function () {
             $(".statusDrp").change(function () {
-                debugger;
                 var val = $(this).val();
                 var LeaveId = $(this).attr("id");
                 $.ajax({
@@ -52,7 +51,8 @@
                     url: "/Admin/UserProfile/StatusForLeave",
                     data: { leaveId: LeaveId,status: val },
                     success: function (data) {
-                        window.location.reload();
+                        alert("Updated");
+                        //window.location.reload();
                     }
                 });
             });

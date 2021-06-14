@@ -36,6 +36,10 @@ export default class ApplyLeaveComponent extends Component {
         axios({url:config.apiURL+"/Leave/AddEmployeeLeave",method:'post',headers:authHeader(), data:payload}).then(handleResponse)
         .then(employeeInfo=>{
             this.setState({isloading:false});
+            var leaveVM=this.state.leaveVM;
+            leaveVM.Reason='';
+            leaveVM.NoOfDays=0;
+            this.setState({leaveVM});
             alert("Submitted!!");
         });
         event.preventDefault();

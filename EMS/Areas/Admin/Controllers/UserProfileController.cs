@@ -69,7 +69,7 @@ namespace EMS.Areas.Admin.Controllers
             UserProfileVM userProfile = this._userProfileRepository.GetEmployeeByEmpId(SearchString);
             if (userProfile == null)
             {
-                return HttpNotFound();
+                TempData["searchempErrorMessage"] = $"No data found with the EmpId:{SearchString}";
             }
             ViewBag.UserProfile = userProfile;
             return View("ManageEmployee", userProfile);
@@ -105,11 +105,10 @@ namespace EMS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetAttendenceByEmpId(int EmpId, DateTime DateOfAttendence)
         {
-            //DateOfAttendence = Convert.ToDateTime(DateOfAttendence.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
             var attendence = this._attendenceRepository.GetEmployeeAttendence(EmpId, DateOfAttendence);
             if (attendence == null)
             {
-                return HttpNotFound();
+                TempData["attErrorMessage"] = $"No data found with the EmpId:{EmpId} and Date:{DateOfAttendence}";
             }
             ViewBag.Attendence = attendence;
             return View("GetAttendence", attendence);

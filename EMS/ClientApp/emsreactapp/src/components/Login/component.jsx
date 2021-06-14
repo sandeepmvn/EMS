@@ -47,8 +47,8 @@ const LoginComponent = (props) => {
         <div className="container">
             <form autoComplete="off" onSubmit={handleClick}>
                 <div className="card offset-md-4 col-12 col-lg-4 login-card mt-2 hv-center p-5">
-                    <div class="text-center p-2">
-                        <i class="fa fa-users" aria-hidden="true" ></i>
+                    <div className="text-center p-2">
+                        <i className="fa fa-users" aria-hidden="true" ></i>
                     </div>
                     {errorMessage && <Alert variant="danger">
                         Invalid Email or Password

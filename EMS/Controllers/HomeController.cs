@@ -10,9 +10,9 @@ namespace EMS.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            //ViewBag.Title = "Home Page";
 
-            return View();
+            return Redirect("~/Admin/UserProfile");
         }
     }
 }

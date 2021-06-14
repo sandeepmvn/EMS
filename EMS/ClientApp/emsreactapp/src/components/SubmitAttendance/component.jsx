@@ -51,6 +51,10 @@ export default class SubmitAttendanceComponent extends Component {
         axios({url:config.apiURL+"/Attendence/AddEmployeeAttendence",method:'post',headers:authHeader(), data:payload}).then(handleResponse)
         .then(employeeInfo=>{
             this.setState({isloading:false});
+            var attendenceVM=this.state.attendenceVM;
+            attendenceVM.AttendenceOn=new Date();
+            attendenceVM.WorkingHours=0;
+            this.setState({attendenceVM});
             alert("Submitted!!");
         });
         event.preventDefault();

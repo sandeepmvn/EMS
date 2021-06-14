@@ -41,6 +41,12 @@
                             <input type="text" id="fname" name="WorkingHours" value="@Model.WorkingHours" class="form-control" readonly>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-md-9">
+                            <a href="/Admin/UserProfile/GetAttendence" class="btn btn-info">Go back to Search</a>
+                        </div>
+                    </div>
                 </div>
             </form>
         }
@@ -49,21 +55,27 @@
             <div>
                 <form action="/Admin/UserProfile/GetAttendenceByEmpId" method="Get">
                     <div class="form-horizontal">
+                        @if (TempData["attErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @TempData["attErrorMessage"]
+                            </div>
+                        }
                         <div class="form-group">
                             <label class="col-md-3 control-label">Employee Id:</label>
                             <div class="col-md-9">
-                                <input type="text" id="fname" name="EmpId" value="" class="form-control ">
+                                <input required type="number" id="fname" name="EmpId" value="" class="form-control ">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Date Of Attendence:</label>
                             <div class="col-md-9">
-                                <input type="date" name="DateOfAttendence" id="MeetingFromDate" value="" class="form-control " />
+                                <input required type="date" name="DateOfAttendence" id="MeetingFromDate" value="" class="form-control " />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-md-9">
-                                <input type="submit" class="btn btn-success" value="Submit">
+                                <input type="submit" class="btn btn-success" value="Search">
                             </div>
                         </div>
 
@@ -73,8 +85,4 @@
         }
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        alert("Hello");
-</script>
 

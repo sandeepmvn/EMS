@@ -29,11 +29,20 @@ namespace EMS.Repository
 
         public void AddAttendence(AttendenceVM attendenceVM)
         {
-            var attendence = new EmployeeAttendence();
-            attendence.FKEmployeeId = attendenceVM.EmployeeId;
-            attendence.AttendanceOn = attendenceVM.AttendenceOn;
-            attendence.WorkingHours = attendenceVM.WorkingHours;
-            Add(attendence);
+            var data=ds.FirstOrDefault(x => x.FKEmployeeId == attendenceVM.EmployeeId && x.AttendanceOn == attendenceVM.AttendenceOn);
+            if (data is null)
+            {
+                var attendence = new EmployeeAttendence();
+                attendence.FKEmployeeId = attendenceVM.EmployeeId;
+                attendence.AttendanceOn = attendenceVM.AttendenceOn;
+                attendence.WorkingHours = attendenceVM.WorkingHours;
+                Add(attendence);
+            }
+            else
+            {
+                data.WorkingHours= attendenceVM.WorkingHours;
+                Update(data);
+            }
         }
 
         public void DeleteAttendence(int attendenceId)
