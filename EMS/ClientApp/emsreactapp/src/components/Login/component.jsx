@@ -3,13 +3,6 @@ import axios from 'axios';
 import { authenticationService } from '../../_services/authenticationService';
 import Alert from 'react-bootstrap/Alert';
 import {config} from '../../_config/config';
-import { css } from "@emotion/react";
-import ClipLoader from "react-spinners/ClipLoader";
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-`;
 
 const LoginComponent = (props) => {
     const [username, setUsername] = useState("");
@@ -73,7 +66,6 @@ const LoginComponent = (props) => {
                     <button type="submit" disabled={isSaving}  className="btn btn-primary mt-3" >Login</button>
                 </div>
             </form>
-            <ClipLoader  loading={isSaving} css={override} size={150} />
         </div>
     );
 }

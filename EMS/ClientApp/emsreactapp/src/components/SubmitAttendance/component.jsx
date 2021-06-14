@@ -47,7 +47,7 @@ export default class SubmitAttendanceComponent extends Component {
             "attendenceOn":this.state.attendenceVM.AttendenceOn,
             "workingHours":this.state.attendenceVM.WorkingHours
         }
-       
+        this.setState({isloading:true});
         axios({url:config.apiURL+"/Attendence/AddEmployeeAttendence",method:'post',headers:authHeader(), data:payload}).then(handleResponse)
         .then(employeeInfo=>{
             this.setState({isloading:false});
@@ -55,6 +55,7 @@ export default class SubmitAttendanceComponent extends Component {
             attendenceVM.AttendenceOn=new Date();
             attendenceVM.WorkingHours=0;
             this.setState({attendenceVM});
+
             alert("Submitted!!");
         });
         event.preventDefault();
@@ -83,7 +84,7 @@ export default class SubmitAttendanceComponent extends Component {
                                     <input required type="number" id="workhours" name="workhours" placeholder="00" value={this.state.attendenceVM.WorkingHours} className="form-control" min="0" max="12" onChange={(e)=>this.handleChangeEmp('WorkingHours',e)} />
                                 </div>
                                 <div className="pull-right">
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-primary" disabled={this.state.isloading}>Submit</button>
                                 </div>
                             </form>
                         </div>

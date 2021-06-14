@@ -10,11 +10,13 @@ import ViewInfoComponent from './components/ViewInfo/component';
 import SubmitAttendanceComponent from './components/SubmitAttendance/component';
 import ApplyLeaveComponent from './components/ApplyLeave/component';
 import DownloadPaySlipsComponent from './components/DownloadPayslips/component';
+import LoaderComponent from './components/Loader/component';
 
 function App() {
   return (
     <Router history={history}>
       <NavbarComponent />
+      <LoaderComponent/>
       <Switch>
          {/* <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} /> */}
          <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} />

@@ -21,10 +21,12 @@ export default class DownloadPaySlipsComponent extends Component {
     search(e) {
         var payslipmonth = e.target.value;
         if (payslipmonth) {
+            this.setState({isloading:true});
             axios({ url: config.apiURL + "/Payslip/GetPayslipByEmpAndMonth/" + this.state.empId + "/" + payslipmonth, method: 'get', headers: authHeader() }).then(handleResponse)
                 .then(paySlipsvm => {
                     this.setState({ paySlipsvm });
                     this.setState({ payslipmonth });
+                    this.setState({isloading:false});
                 });
         }
     }
@@ -38,7 +40,7 @@ export default class DownloadPaySlipsComponent extends Component {
                     <div className="container">
                         <div className="col-xs-12 card p-5">
                             <h4>Search by :</h4>
-                            <input type="month" format="mm-yyyy" className="form-control" onChange={(e) => this.search(e)} ></input>
+                            <input type="month" format="mm-yyyy" className="form-control" onChange={(e) => this.search(e)} disabled={this.state.isloading}></input>
                         </div>
                         {this.state.payslipmonth && !this.state.paySlipsvm &&
                             <div className="col-xs-12 card p-2">

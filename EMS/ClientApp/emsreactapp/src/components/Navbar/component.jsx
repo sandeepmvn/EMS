@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { authenticationService } from '../../_services/authenticationService';
-import { Navbar,Nav } from 'react-bootstrap';
-
+import {Navbar, Nav } from 'react-bootstrap';
 export default class NavbarComponent extends Component {
 
     constructor(props) {
@@ -13,11 +12,11 @@ export default class NavbarComponent extends Component {
         authenticationService.isLogged.subscribe(x => this.setState({ isAuthenticated: x }));
     }
 
-    logout=()=> {
-		authenticationService.logout();
+    logout = () => {
+        authenticationService.logout();
         //this.props.history.push('/login');
-		window.location.href='/login';
-	}
+        window.location.href = '/login';
+    }
 
     render() {
         return (
@@ -33,10 +32,10 @@ export default class NavbarComponent extends Component {
                             <Nav.Link href="/payslips">PaySlips</Nav.Link>
                         </Nav>}
                         {!this.state.isAuthenticated && <Nav className="mr-auto">
-                            </Nav>}
+                        </Nav>}
                         <Nav>
                             {!this.state.isAuthenticated && <Nav.Link href="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Login</Nav.Link>}
-                            {this.state.isAuthenticated &&  <a onClick={this.logout} className="nav-item nav-link"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</a>}
+                            {this.state.isAuthenticated && <a onClick={this.logout} className="nav-item nav-link"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</a>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
