@@ -8,9 +8,10 @@ export const authenticationService = {
     login,
     logout,
     getEmployeeId,
+    gettoken,
     isLogged: isLoggedInSubject.asObservable(),
     get isLoggedIn() { return isLoggedInSubject.value },
-    token: localStorage.getItem('authCookie'),
+    
 };
 
 export function login(token) {
@@ -27,6 +28,10 @@ export function logout() {
 export function getEmployeeId(token){
     let decodedToken = jwt_decode(token);
     return decodedToken['UId'];
+}
+
+export function gettoken(){
+    return localStorage.getItem('authCookie');
 }
 
 

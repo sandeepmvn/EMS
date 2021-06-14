@@ -9,7 +9,7 @@ export default class DownloadPaySlipsComponent extends Component {
     }
 
     componentDidMount() {
-        var empId = authenticationService.getEmployeeId(authenticationService.token);
+        var empId = authenticationService.getEmployeeId(authenticationService.gettoken());
         this.setState({ empId });
 
     }

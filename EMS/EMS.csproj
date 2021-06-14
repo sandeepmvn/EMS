@@ -217,11 +217,23 @@
     <Content Include="ClientApp\emsreactapp\src\App.css" />
     <Content Include="ClientApp\emsreactapp\src\App.js" />
     <Content Include="ClientApp\emsreactapp\src\App.test.js" />
+    <Content Include="ClientApp\emsreactapp\src\components\ApplyLeave\component.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\components\DownloadPayslips\component.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\components\Login\component.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\components\Navbar\component.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\components\SubmitAttendance\component.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\components\ViewInfo\component.jsx" />
     <Content Include="ClientApp\emsreactapp\src\index.css" />
     <Content Include="ClientApp\emsreactapp\src\index.js" />
     <Content Include="ClientApp\emsreactapp\src\logo.svg" />
     <Content Include="ClientApp\emsreactapp\src\reportWebVitals.js" />
     <Content Include="ClientApp\emsreactapp\src\setupTests.js" />
+    <Content Include="ClientApp\emsreactapp\src\_config\config.js" />
+    <Content Include="ClientApp\emsreactapp\src\_helpers\auth-header.js" />
+    <Content Include="ClientApp\emsreactapp\src\_helpers\handle-response.js" />
+    <Content Include="ClientApp\emsreactapp\src\_helpers\history.js" />
+    <Content Include="ClientApp\emsreactapp\src\_helpers\PrivateRoute.jsx" />
+    <Content Include="ClientApp\emsreactapp\src\_services\authenticationService.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -294,9 +306,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="ClientApp\emsreactapp\src\components\" />
-    <Folder Include="ClientApp\emsreactapp\src\_helpers\" />
-    <Folder Include="ClientApp\emsreactapp\src\_services\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

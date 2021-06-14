@@ -38,14 +38,14 @@ const LoginComponent = (props) => {
             setisSaving(false);
             seterrorMessage(true);
             console.log(error);
-            alert("Error occurred");
+            //alert("Error occurred");
         })
         event.preventDefault();
     }
 
     return (
         <div className="container">
-            <form autocomplete="off" onSubmit={handleClick}>
+            <form autoComplete="off" onSubmit={handleClick}>
                 <div className="card offset-md-4 col-12 col-lg-4 login-card mt-2 hv-center p-5">
                     <div class="text-center p-2">
                         <i class="fa fa-users" aria-hidden="true" ></i>
@@ -70,7 +70,7 @@ const LoginComponent = (props) => {
                         placeholder="Password" autoComplete="off"
                         onChange={(e) => setPassword(e.target.value)} required
                     />
-                    <button type="submit" disabled={isSaving}  class="btn btn-primary mt-3" >Login</button>
+                    <button type="submit" disabled={isSaving}  className="btn btn-primary mt-3" >Login</button>
                 </div>
             </form>
             <ClipLoader  loading={isSaving} css={override} size={150} />
