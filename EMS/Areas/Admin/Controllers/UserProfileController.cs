@@ -107,6 +107,10 @@ namespace EMS.Areas.Admin.Controllers
         {
             //DateOfAttendence = Convert.ToDateTime(DateOfAttendence.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
             var attendence = this._attendenceRepository.GetEmployeeAttendence(EmpId, DateOfAttendence);
+            if (attendence == null)
+            {
+                return HttpNotFound();
+            }
             ViewBag.Attendence = attendence;
             return View("GetAttendence", attendence);
         }
