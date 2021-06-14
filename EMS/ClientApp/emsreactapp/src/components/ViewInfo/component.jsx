@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { authenticationService } from '../../_services/authenticationService';
-import { Navbar, Nav } from 'react-bootstrap';
 import axios from 'axios';
 import { config } from '../../_config/config';
 import {authHeader} from '../../_helpers/auth-header';

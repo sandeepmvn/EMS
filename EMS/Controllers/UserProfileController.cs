@@ -33,7 +33,6 @@ namespace EMS.Controllers
             return Ok(this._userProfileRepository.GetEmployeeForAPI(empId));
         }
 
-
         [HttpPut]
         [Route("UpdateEmployee")]
         public IHttpActionResult UpdateEmployee(EmployeeRequestVM employeeRequestVM)

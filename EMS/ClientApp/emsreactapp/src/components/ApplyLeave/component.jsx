@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { authenticationService } from '../../_services/authenticationService';
 
 
 export default class ApplyLeaveComponent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { employeeInfo: {} };
+        this.state = { empId: 0
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -21,7 +23,8 @@ export default class ApplyLeaveComponent extends Component {
       }
 
       componentDidMount(){
-        //load the data
+        var empId = authenticationService.getEmployeeId(authenticationService.token);
+        this.setState({ empId });
               }
 
     render() {

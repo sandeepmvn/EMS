@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, {  useState } from 'react';
 import axios from 'axios';
 import { authenticationService } from '../../_services/authenticationService';
 import Alert from 'react-bootstrap/Alert';
@@ -21,7 +21,7 @@ const LoginComponent = (props) => {
             return;
        seterrorMessage(false);
        setisSaving(true)
-        var self = this;
+       
         var payload = {
             "emailId": username,
             "password": password
@@ -53,7 +53,7 @@ const LoginComponent = (props) => {
                     {errorMessage && <Alert variant="danger">
                         Invalid Email or Password
                 </Alert>}
-                    <label for="emsemail"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
+                    <label htmlFor="emsemail"><i className="fa fa-envelope-o" aria-hidden="true"></i> Email</label>
                     <input type="email" value={username}
                         className="form-control"
                         id="emsemail"
@@ -62,7 +62,7 @@ const LoginComponent = (props) => {
                         placeholder="Enter EmailId" autoComplete="off"
                         onChange={(e) => setUsername(e.target.value)} required
                     />
-                    <label for="emspassword"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+                    <label htmlFor="emspassword"><i className="fa fa-key" aria-hidden="true"></i> Password</label>
                     <input value={password} type="password"
                         className="form-control"
                         id="emspassword"
