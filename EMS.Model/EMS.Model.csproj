@@ -100,6 +100,7 @@
     <Compile Include="ViewModels\EmployeeVM.cs" />
     <Compile Include="ViewModels\LeaveVM.cs" />
     <Compile Include="ViewModels\PayslipVM.cs" />
+    <Compile Include="ViewModels\UserProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

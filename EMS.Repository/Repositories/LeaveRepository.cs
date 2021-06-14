@@ -32,7 +32,6 @@ namespace EMS.Repository
             }).ToList();
         }
 
-
         public List<LeaveVM> GetEmployeeLeavesByEmpId(int empId)
         {
             return ds.Select(x=>new LeaveVM() { 
@@ -45,12 +44,19 @@ namespace EMS.Repository
 
         public void AddEmployeeLeave(LeaveVM leaveVM)
         {
-            var leave = ds.Find(leaveVM.EmployeeId);
+            var leave = new EmployeeLeave();
             leave.FKEmployeeId = leaveVM.EmployeeId;
             leave.NoOfDays = leaveVM.NoOfDays;
             leave.Reason = leaveVM.Reason;
             leave.Status = "Pending";
             Add(leave);
+        }
+
+        public void UpdateEmployeeLeaveStatus(int leaveId, string status)
+        {
+            var leave = ds.Find(leaveId);
+            leave.Status = status;
+            Update(leave);
         }
     }
 }

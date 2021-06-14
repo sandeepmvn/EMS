@@ -15,5 +15,6 @@ namespace EMS.Repository
         List<LeaveVM> GetEmployeeLeavesByEmpId(int empId);
 
         void AddEmployeeLeave(LeaveVM leave);
+        void UpdateEmployeeLeaveStatus(int leaveId, string status);
     }
 }

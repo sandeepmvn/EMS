@@ -1,4 +1,4 @@
-﻿@model EMS.Model.EmployeeAttendence
+﻿@model EMS.Model.ViewModels.AttendenceVM
 @{
     ViewBag.Title = "GetAttendence";
 }
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Employee Id:</label>
                         <div class="col-md-9">
-                            <input type="text" id="fname" name="EmpId" value="@Model.FKEmployeeId" class="form-control" readonly>
+                            <input type="text" id="fname" name="EmpId" value="@Model.EmployeeId" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="form-group">

@@ -1,5 +1,6 @@
 ﻿using EMS.BO;
 using EMS.Model;
+using EMS.Model.ViewModels;
 using EMS.Repository;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,21 @@ namespace EMS.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(UserProfile userProfile)
+        public ActionResult Create(UserProfileVM userProfile)
         {
             if (ModelState.IsValid)
             {
-                userProfile.FKRoleId = 2;
-                this._userProfileRepository.Add(userProfile);
-                return RedirectToAction("Index");
+                var user=this._userProfileRepository.IsUserExist(userProfile.EmployeeId, userProfile.EmailId);
+                if(user is null)
+                {
+                    this._userProfileRepository.AddUserProfile(userProfile);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Either emailId or employeeId already exist.");
+                }
+                
             }
             return View(userProfile);
         }
@@ -57,8 +66,7 @@ namespace EMS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int SearchString)
         {
-
-            UserProfile userProfile = this._userProfileRepository.GetEmployeerByEmpId(SearchString);
+            UserProfileVM userProfile = this._userProfileRepository.GetEmployeeByEmpId(SearchString);
             if (userProfile == null)
             {
                 return HttpNotFound();
@@ -70,14 +78,22 @@ namespace EMS.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManageEmployee(UserProfile userProfile)
+        public ActionResult ManageEmployee(UserProfileVM userProfile)
         {
             if (ModelState.IsValid)
             {
-                this._userProfileRepository.Update(userProfile);
+                this._userProfileRepository.UpdateUserProfile(userProfile);
                 return RedirectToAction("Index");
             }
             return View(userProfile);
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteEmployee(int empId)
+        {
+            this._userProfileRepository.DeleteEmployee(empId);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -89,7 +105,7 @@ namespace EMS.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetAttendenceByEmpId(int EmpId, DateTime DateOfAttendence)
         {
-            DateOfAttendence = Convert.ToDateTime(DateOfAttendence.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
+            //DateOfAttendence = Convert.ToDateTime(DateOfAttendence.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
             var attendence = this._attendenceRepository.GetEmployeeAttendence(EmpId, DateOfAttendence);
             ViewBag.Attendence = attendence;
             return View("GetAttendence", attendence);
@@ -104,16 +120,14 @@ namespace EMS.Areas.Admin.Controllers
             new SelectListItem {Text="Rejected", Value="Rejected"},
         };
             ViewBag.status = obj;
-            var leaves = this._leaveRepository.GetAll();
+            var leaves = this._leaveRepository.GetEmployeeLeaves();
             return View(leaves);
         }
 
         [HttpPost]
         public ActionResult StatusForLeave(int leaveId, string status)
         {
-            EmployeeLeave leave= this._leaveRepository.GetById(leaveId);
-            leave.Status = status;
-            this._leaveRepository.Update(leave);
+            this._leaveRepository.UpdateEmployeeLeaveStatus(leaveId,status);
             return Json("Success");
         }
     }

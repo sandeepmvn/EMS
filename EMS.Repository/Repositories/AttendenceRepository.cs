@@ -29,7 +29,7 @@ namespace EMS.Repository
 
         public void AddAttendence(AttendenceVM attendenceVM)
         {
-            var attendence = ds.Find(attendenceVM.EmployeeId);
+            var attendence = new EmployeeAttendence();
             attendence.FKEmployeeId = attendenceVM.EmployeeId;
             attendence.AttendanceOn = attendenceVM.AttendenceOn;
             attendence.WorkingHours = attendenceVM.WorkingHours;
