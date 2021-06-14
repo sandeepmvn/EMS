@@ -41,7 +41,7 @@ namespace EMS.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "The emailId or password is incorrect");
+                    ModelState.AddModelError(string.Empty, "EmailId or password is incorrect");
                 }
             }
             

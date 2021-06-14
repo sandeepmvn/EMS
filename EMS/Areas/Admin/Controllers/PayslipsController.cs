@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EMS.Model;
+using EMS.Model.ViewModels;
 using EMS.Repository;
 
 namespace EMS.Areas.Admin.Controllers
@@ -16,28 +17,29 @@ namespace EMS.Areas.Admin.Controllers
     {
         //private EMSContext db = new EMSContext();
         private IPayslipRepository _payslipRepository;
+        private IUserProfileRepository _userProfileRepository;
 
         public PayslipsController()
         {
+            this._userProfileRepository = new UserProfileRepository(new EMSContext());
             this._payslipRepository = new PayslipRepository(new EMSContext());
         }
 
         // GET: Admin/Payslips
         public ActionResult Index()
         {
-            return View(this._payslipRepository.GetAll());
+            return View(this._payslipRepository.GetAllPaySlips());
         }
 
-        // GET: Admin/Payslips/Details/5
-        public ActionResult Details(int id)
-        {
-            Payslip payslip = this._payslipRepository.GetById(id);
-            if (payslip == null)
-            {
-                return HttpNotFound();
-            }
-            return View(payslip);
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    PayslipVM payslip = this._payslipRepository.GetPayslipById(id);
+        //    if (payslip == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(payslip);
+        //}
 
         // GET: Admin/Payslips/Create
         public ActionResult Create()
@@ -50,13 +52,20 @@ namespace EMS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Payslip payslip)
+        public ActionResult Create(PayslipVM payslip)
         {
             if (ModelState.IsValid)
             {
-                payslip.CreditedOn = DateTime.Now;
-                this._payslipRepository.Add(payslip);
-                return RedirectToAction("Index");
+                var obj=this._userProfileRepository.GetEmployeeByEmpId(payslip.EmployeeId);
+                if (obj != null)
+                {
+                    this._payslipRepository.AddUpdatePayslip(payslip);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "EmployeeId doesnot exist.");
+                }
             }
 
             return View(payslip);
@@ -65,7 +74,7 @@ namespace EMS.Areas.Admin.Controllers
         // GET: Admin/Payslips/Edit/5
         public ActionResult Edit(int id)
         {
-            Payslip payslip = this._payslipRepository.GetById(id);
+            PayslipVM payslip = this._payslipRepository.GetPayslipById(id);
             if (payslip == null)
             {
                 return HttpNotFound();
@@ -78,32 +87,26 @@ namespace EMS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Payslip payslip)
+        public ActionResult Edit(PayslipVM payslip)
         {
             if (ModelState.IsValid)
             {
-                payslip.CreditedOn = DateTime.Now;
-                this._payslipRepository.Update(payslip);
-                return RedirectToAction("Index");
-            }
-            return View(payslip);
-        }
-
-        // GET: Admin/Payslips/Delete/5
-        public ActionResult Delete(int id)
-        {
-            Payslip payslip = this._payslipRepository.GetById(id);
-            if (payslip == null)
-            {
-                return HttpNotFound();
+                var obj = this._userProfileRepository.GetEmployeeByEmpId(payslip.EmployeeId);
+                if (obj != null)
+                {
+                    this._payslipRepository.UpdatePayslip(payslip);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "EmployeeId doesnot exist.");
+                }
             }
             return View(payslip);
         }
 
         // POST: Admin/Payslips/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeletePayslip(int id)
         {
             this._payslipRepository.Delete(id);
             return RedirectToAction("Index");

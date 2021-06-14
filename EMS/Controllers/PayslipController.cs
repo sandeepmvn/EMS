@@ -1,11 +1,13 @@
 ﻿using EMS.CustomFilters;
 using EMS.Model;
+using EMS.Model.Utility;
 using EMS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -26,6 +28,8 @@ namespace EMS.Controllers
         [Route("GetPayslipByEmpAndMonth/{empId}/{month}")]
         public IHttpActionResult GetPayslipByEmpAndMonth(int empId,DateTime month)
         {
+            if (Helper.GetEmpIdFromClaims(User as ClaimsPrincipal) != empId)
+                return Unauthorized();
             return Ok(this._payslipRepository.GetPayslipByEmpAndMonth(empId,month));
         }
     }

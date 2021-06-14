@@ -19,6 +19,7 @@ namespace EMS.Model.ViewModels
 
         [Required(ErrorMessage = "Please enter emailId")]
         [DisplayName("Email Id")]
+        [StringLength(50)]
         public string EmailId { get; set; }
 
         [Required(ErrorMessage = "Please enter password")]
@@ -26,9 +27,11 @@ namespace EMS.Model.ViewModels
 
         [DisplayName("First Name")]
         [Required(ErrorMessage = "Please enter first name")]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
+        [StringLength(50)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter Date Of Birth")]
@@ -42,12 +45,16 @@ namespace EMS.Model.ViewModels
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter designation")]
+        [StringLength(50)]
         public string Designation { get; set; }
         [Required(ErrorMessage = "Please enter gender")]
+        [StringLength(10)]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Please enter address")]
+        [StringLength(500)]
         public string Address { get; set; }
         [Required(ErrorMessage = "Please enter workplace")]
+        [StringLength(50)]
         public string Workplace { get; set; }
         public bool IsActive { get; set; }
     }

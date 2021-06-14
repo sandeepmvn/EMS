@@ -1,33 +1,34 @@
-﻿@model EMS.Model.Payslip
+﻿@model EMS.Model.ViewModels.PayslipVM
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Payslip</h4>
+        <h4>Edit Payslip</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PKPayslipId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FKEmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FKEmployeeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FKEmployeeId, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.EmployeeId, "", new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MonthDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MonthDate, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="month" name="MonthDate" id="MonthDate" class="form-control" value="@Model.MonthDate.ToString("yyyy-MM")" required />
+                @*@Html.EditorFor(model => model.MonthDate, new { htmlAttributes = new { @type = "month", @class = "form-control", value=Model.MonthDate.ToString("yyyy-MM") } })*@
+                @*@Html.TextBoxFor(model => model.MonthDate, "{0:MM/yyyy}", new { @type = "month", @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.MonthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,12 +43,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a href="/Admin/Payslips" class="btn btn-default">Cancel</a>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

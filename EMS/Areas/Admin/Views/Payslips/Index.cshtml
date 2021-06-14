@@ -1,18 +1,18 @@
-﻿@model IEnumerable<EMS.Model.Payslip>
+﻿@model IEnumerable<EMS.Model.ViewModels.PayslipVM>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>PaySlips</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Payslip", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table table-bordered table-striped"  >
+    <tr style="background-color:#3399CC;color:white;">
         <th>
-            @Html.DisplayNameFor(model => model.FKEmployeeId)
+            @Html.DisplayNameFor(model => model.EmployeeId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MonthDate)
@@ -23,16 +23,16 @@
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
-        <th></th>
+        <th>Action</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FKEmployeeId)
+            @Html.DisplayFor(modelItem => item.EmployeeId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MonthDate)
+            @item.MonthDate.ToString("MMM-yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreditedOn)
@@ -42,10 +42,15 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PKPayslipId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PKPayslipId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PKPayslipId })
+            @Html.ActionLink("Delete", "DeletePayslip", new { id=item.PKPayslipId })
         </td>
     </tr>
 }
+    @if(Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5" class="text-center"> No Data Available</td>
+        </tr>
+    }
 
 </table>

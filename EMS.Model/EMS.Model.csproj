@@ -89,6 +89,14 @@
     <Compile Include="Migrations\202106131616509_stringlength_for_Rolename.designer.cs">
       <DependentUpon>202106131616509_stringlength_for_Rolename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106141055231_removed_payslip.cs" />
+    <Compile Include="Migrations\202106141055231_removed_payslip.designer.cs">
+      <DependentUpon>202106141055231_removed_payslip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106141109483_adding_payslip.cs" />
+    <Compile Include="Migrations\202106141109483_adding_payslip.designer.cs">
+      <DependentUpon>202106141109483_adding_payslip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PartialClass\UserModel.cs" />
     <Compile Include="Payslip.cs" />
@@ -127,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131616509_stringlength_for_Rolename.resx">
       <DependentUpon>202106131616509_stringlength_for_Rolename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141055231_removed_payslip.resx">
+      <DependentUpon>202106141055231_removed_payslip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141109483_adding_payslip.resx">
+      <DependentUpon>202106141109483_adding_payslip.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

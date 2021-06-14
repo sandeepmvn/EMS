@@ -1,31 +1,31 @@
-﻿@model EMS.Model.Payslip
+﻿@model EMS.Model.ViewModels.PayslipVM
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Payslip</h4>
+        <h4>Add Payslip</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FKEmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FKEmployeeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FKEmployeeId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MonthDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MonthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.MonthDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBoxFor(model => model.MonthDate, "{0:yyyy-MM}", new { @type = "month", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MonthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,12 +40,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a href="/Admin/Payslips" class="btn btn-default">Cancel</a>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
