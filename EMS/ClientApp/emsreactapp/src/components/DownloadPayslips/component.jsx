@@ -10,6 +10,7 @@ export default class DownloadPaySlipsComponent extends Component {
     constructor(props) {
         super(props);
         this.state = { empId: 0, paySlipsvm: null, isloading: false, payslipmonth: null };
+        this.formatDate=this.formatDate.bind(this);
     }
 
     componentDidMount() {
@@ -30,6 +31,13 @@ export default class DownloadPaySlipsComponent extends Component {
                 });
         }
     }
+    formatDate(datestring){
+        var today = new Date(datestring);
+        // var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm ;
+      }
 
 
 
@@ -40,7 +48,9 @@ export default class DownloadPaySlipsComponent extends Component {
                     <div className="container">
                         <div className="col-xs-12 card p-5">
                             <h4>Search by :</h4>
-                            <input type="month" format="mm-yyyy" className="form-control" onChange={(e) => this.search(e)} disabled={this.state.isloading}></input>
+                            <input type="month" format="mm-yyyy" className="form-control" onChange={(e) => this.search(e)} disabled={this.state.isloading}
+                            max={this.formatDate(new Date())}
+                            ></input>
                         </div>
                         {this.state.payslipmonth && !this.state.paySlipsvm &&
                             <div className="col-xs-12 card p-2">

@@ -9,6 +9,7 @@ export const authenticationService = {
     logout,
     getEmployeeId,
     gettoken,
+    getEmpName,
     isLogged: isLoggedInSubject.asObservable(),
     get isLoggedIn() { return isLoggedInSubject.value },
     
@@ -32,6 +33,11 @@ export function getEmployeeId(token){
 
 export function gettoken(){
     return localStorage.getItem('authCookie');
+}
+
+export function getEmpName(token){
+    let decodedToken = jwt_decode(token);
+    return decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 }
 
 

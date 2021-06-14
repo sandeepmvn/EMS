@@ -19,5 +19,11 @@ namespace EMS.Model.Utility
             _ = int.TryParse(claim?.Value ?? string.Empty, out value);
             return value;
         }
+
+        public static string GetEmpNameFromClaims(ClaimsPrincipal claims)
+        {
+            var claim = claims?.FindFirst(x => x.Type == ClaimTypes.Name);
+            return claim?.Value;
+        }
     }
 }

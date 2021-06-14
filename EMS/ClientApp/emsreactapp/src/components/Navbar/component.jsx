@@ -22,7 +22,7 @@ export default class NavbarComponent extends Component {
         return (
             <>
                 <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
-                    <Navbar.Brand href="/"><i className="fa fa-users" aria-hidden="true"></i> Employee Management System</Navbar.Brand>
+                    <Navbar.Brand href="/welcome"><i className="fa fa-users" aria-hidden="true"></i> Employee Management System</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         {this.state.isAuthenticated && <Nav className="mr-auto">

@@ -11,7 +11,8 @@ import SubmitAttendanceComponent from './components/SubmitAttendance/component';
 import ApplyLeaveComponent from './components/ApplyLeave/component';
 import DownloadPaySlipsComponent from './components/DownloadPayslips/component';
 import LoaderComponent from './components/Loader/component';
-
+import WelcomeComponent from './components/welcome';
+import LeaveComponent from './components/Leaves/component';
 function App() {
   return (
     <Router history={history}>
@@ -20,11 +21,13 @@ function App() {
       <Switch>
          {/* <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} /> */}
          <PrivateRoute exact path="/viewinfo" component={ViewInfoComponent} />
+         <PrivateRoute exact path="/welcome" component={WelcomeComponent} />
          <PrivateRoute exact path="/attendance" component={SubmitAttendanceComponent} />
-         <PrivateRoute exact path="/leave" component={ApplyLeaveComponent} />
+         <PrivateRoute exact path="/applyleave" component={ApplyLeaveComponent} />
+         <PrivateRoute exact path="/leave" component={LeaveComponent} />
          <PrivateRoute exact path="/payslips" component={DownloadPaySlipsComponent} />
          <Route path='/login' exact component={LoginComponent} />
-         <Route path='/' exact component={LoginComponent} />
+         <PrivateRoute exact path="/" component={WelcomeComponent} />
       </Switch>
     </Router>
   );

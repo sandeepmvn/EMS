@@ -24,7 +24,7 @@ const LoginComponent = (props) => {
             if(response.status===200){
                if(response.data.Token){
                 authenticationService.login(response.data.Token);
-                props.history.push('/viewinfo');
+                props.history.push('/welcome');
                }
            }
         }).catch(function (error) {

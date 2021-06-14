@@ -43,7 +43,7 @@ namespace EMS.Controllers
 
                     List<Claim> claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, userDetail.UserProfile.FirstName+userDetail.UserProfile.LastName),
+                    new Claim(ClaimTypes.Name, userDetail.UserProfile.FirstName+" "+userDetail.UserProfile?.LastName??""),
                     new Claim("UId",userDetail.UserProfile.EmployeeId.ToString()),
                     new Claim(ClaimTypes.Email,userDetail.UserProfile.EmailId),
                     new Claim(ClaimTypes.Role,userDetail.RoleName),

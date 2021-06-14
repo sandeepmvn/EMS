@@ -76,7 +76,9 @@ export default class SubmitAttendanceComponent extends Component {
 
                                 <div className="form-group">
                                     <label htmlFor="dob">DOB</label>
-                                    <input required type="date" id="dob" name="dob" value={this.formatDate(this.state.attendenceVM.AttendenceOn)} className="form-control" onChange={(e)=>this.handleChangeEmp('AttendenceOn',e)} />
+                                    <input required type="date" id="dob" name="dob" value={this.formatDate(this.state.attendenceVM.AttendenceOn)} className="form-control" onChange={(e)=>this.handleChangeEmp('AttendenceOn',e)} 
+                                    max={this.formatDate(new Date())}
+                                    />
                                 </div>
 
                                 <div className="form-group">

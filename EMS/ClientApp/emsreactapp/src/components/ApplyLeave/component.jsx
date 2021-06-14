@@ -40,7 +40,7 @@ export default class ApplyLeaveComponent extends Component {
             leaveVM.Reason='';
             leaveVM.NoOfDays=0;
             this.setState({leaveVM});
-            alert("Submitted!!");
+            this.props.history.push('/leave');
         });
         event.preventDefault();
       }
@@ -74,6 +74,7 @@ export default class ApplyLeaveComponent extends Component {
                                 </div>
                                 <div className="pull-right">
                                 <button type="submit" className="btn btn-primary">Apply</button>
+                                &nbsp; <a href="/leave" className="btn btn-danger">Cancel</a>
                                 </div>
                             </form>
                         </div>
