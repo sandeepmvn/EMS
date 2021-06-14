@@ -50,7 +50,7 @@ namespace EMS.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Either emailId or employeeId already exist.");
+                    ModelState.AddModelError(string.Empty, "Either EmailId or EmployeeId already exist.");
                 }
                 
             }
